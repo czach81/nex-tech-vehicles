@@ -1,6 +1,8 @@
+from django.views.generic import FormView
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import VehicleForm 
+from vehicle.models import Vehicle
 
 def contact(request):
 
@@ -40,7 +42,7 @@ def contact(request):
     form = VehicleForm()
     return render(request, 'form.html', {'form': form})
 
-def Vehicle_models_detail(request):
+def add_vehicle_view(request):
 
     if request.method == 'POST':
         form = VehicleForm(request.POST)
@@ -49,4 +51,23 @@ def Vehicle_models_detail(request):
 
 
     form = VehicleForm()
-    return render(request, 'form.html', {'form': form})
+    return render(request, 'add_vehicle.html', {'form': form})
+
+
+class VehicleListView(FormView):
+    form_class = VehicleForm
+    template_name = "list_vehicles.html"
+    
+    def get(self, request):
+        vehicles = Vehicle.objects.all()
+        return render(request, self.template_name, {'vehicles': vehicles})
+
+
+
+class EditVehicleView(FormView):
+    form_class = VehicleForm
+    template_name = "edit_vehicle.html"
+
+   
+
+    

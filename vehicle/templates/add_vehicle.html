@@ -1,0 +1,155 @@
+{% extends "base_site.html" %}
+
+
+
+{% block content %}
+
+<style>
+    
+    h1   {color: red;
+         margin-bottom: 2rem;
+         line-height: 2.5;
+         display: flex;
+         justify-content: center;}
+  
+</style>
+<style>
+    button {
+        display: inline-block;
+        color: red;
+        border: 4px double #cccccc;
+        padding: 10px;
+        margin-bottom: 5rem;
+        margin-top: 2rem;
+        text-align: center;
+    
+    }
+    button:hover {
+        background-color:black;
+
+    }
+
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            
+
+            <h1>Add Your New Vehicle</h1>
+            <form method = "post">
+                {% csrf_token %}
+                
+            
+                <div class="form-group">
+                    {{ form.vehicle_Number.label_tag }}
+                    {{ form.vehicle_Number }}
+                </div>
+                <div class="form-group">
+                    {{ form.description.label_tag }}
+                    {{ form.description }}
+                </div>
+                <div class="form-group">
+                    {{ form.employee.label_tag }}
+                    {{ form.employee }}
+                </div>
+                <div class="form-group">
+                    {{ form.vehicle_Type.label_tag }}
+                    {{ form.vehicle_Type }}
+                </div>
+                <div class="form-group">
+                    {{ form.location.label_tag }}
+                    {{ form.location }}
+                </div>
+                <div class="form-group">
+                    {{ form.make.label_tag }}
+                    {{ form.make }}
+                </div>
+                <div class="form-group">
+                    {{ form.model.label_tag }}
+                    {{ form.model }}
+                </div>
+                <div class="form-group">
+                    {{ form.year.label_tag }}
+                    {{ form.year }}
+                </div>
+                <div class="form-group">
+                    {{ form.purchase_Date.label_tag }}
+                    {{ form.purchase_Date }}
+                </div>
+                <div class="form-group">
+                    {{ form.disposal_Date.label_tag }}
+                    {{ form.disposal_Date }}
+                </div>
+                <div class="form-group">
+                    {{ form.mileage.label_tag }}
+                    {{ form.mileage }}
+                </div>
+                <div class="form-group">
+                    {{ form.capacity.label_tag }}
+                    {{ form.capacity }}
+                </div>
+                <div class="form-group">
+                    {{ form.tag_Number.label_tag }}
+                    {{ form.tag_Number }}
+                </div>
+                <div class="form-group">
+                    {{ form.VIN.label_tag }}
+                    {{ form.VIN }}
+                </div>
+                <div class="form-group">
+                    {{ form.cell_Phone.label_tag }}
+                    {{ form.cell_Phone }}
+                </div>
+                <div class="form-group">
+                    {{ form.voice_Mail.label_tag }}
+                    {{ form.voice_Mail }}
+                </div>
+                <div class="form-group">
+                    {{ form.gas_Card.label_tag }}
+                    {{ form.gas_Card }}
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Days Driven</label>
+                </div>
+                
+                <div class="form-group">
+                    {{ form.fuel_Type.label_tag }}
+                    {{ form.fuel_Type }}
+                </div>
+                <div class="form-group">
+                    {{ form.disposal_Mileage.label_tag }}
+                    {{ form.disposal_Mileage }}
+                </div>
+                <div class="form-group">
+                    {{ form.comments.label_tag }}
+                    {{ form.comments }}
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Receives Messages</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Active</label>
+                </div>
+                <div class="form-group">
+                    {{ form.reminder_Type.label_tag }}
+                    {{ form.reminder_Type }}
+                </div>
+
+
+                   
+                
+                
+                <button type="submit">Submit</button>
+            
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

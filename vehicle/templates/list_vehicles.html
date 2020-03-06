@@ -1,0 +1,70 @@
+{% extends "base_site.html" %}
+
+
+
+{% block content %}
+<style>
+    
+    h1   {color: red;
+         margin-bottom: 2rem;
+         line-height: 2.5;
+         display: flex;
+         justify-content: center;}
+  
+</style>
+<style>
+    button {
+        display: inline-block;
+        color: red;
+        border: 4px double #cccccc;
+        padding: 10px;
+        margin-bottom: 5rem;
+        margin-top: 2rem;
+        text-align: center;
+    
+    }
+    button:hover {
+        background-color:black;
+
+    }
+</style>
+
+<form method="post">
+    <button type="submit">Submit</button>
+</form>
+
+{% for vehicle in vehicles %}
+ 
+<h1>{{vehicle.vehicle}}</h1>
+    <p>Vehicle</p>
+
+<td>{{vehicle.vehicle_Number}},</td>
+<td>{{vehicle.description}},</td>
+<td>{{vehicle.employee}},</td>
+<td>{{vehicle.vehicle_Type}},</td>
+<td>{{vehicle.location}},</td>
+<td>{{vehicle.make}},</td>
+<td>{{vehicle.model}},</td>
+<td>{{vehicle.year}},</td>
+<td>{{vehicle.purchase_Date}},</td>
+<td>{{vehicle.disposal_Date}},</td>
+<td>{{vehicle.mileage}},</td>
+<td>{{vehicle.capacity}},</td>
+<td>{{vehicle.tag_Number}},</td>
+<td>{{vehicle.VIN}},</td>
+<td>{{vehicle.cell_Phone}},</td>
+<td>{{vehicle.voice_Mail}},</td>
+<td>{{vehicle.gas_Card}},</td>
+<td>{{vehicle.days_Driven}},</td>
+<td>{{vehicle.fuel_Type}},</td>
+<td>{{vehicle.disposal_Mileage}},</td>
+<td>{{vehicle.comments}},</td>
+<td>{{vehicle.recieves_Messages}},</td>
+<td>{{vehicle.active}},</td>
+<td>{{vehicle.reminder_Type}}</td>
+
+{% endfor %}
+
+
+    
+{% endblock %}

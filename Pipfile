@@ -5,12 +5,14 @@ verify_ssl = true
 
 [dev-packages]
 pylint = "*"
+rope = "*"
 
 [packages]
 django = "*"
 pylint = "*"
 bootstrap = "*"
 4-4-1 = "*"
+rope = "*"
 
 [requires]
 python_version = "3.8"
