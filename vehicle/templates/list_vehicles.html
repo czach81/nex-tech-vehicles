@@ -28,43 +28,101 @@
 
     }
 </style>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
+    table {
+  border-spacing: 15px;
+    }
+    .btn { 
+        border: 2px solid black;
+        color: red;
+        border: 4px double #cccccc;
+    }
 
-<form method="post">
-    <button type="submit">Submit</button>
+</style>
+
+
+
+
+ 
+
+    
+<a href='{% url 'add_vehicle' %}'>Add Vehicle</a>
+
+<form method="get" >
+    {{ form }}
+    <button type="submit">Search</button>
 </form>
 
-{% for vehicle in vehicles %}
- 
-<h1>{{vehicle.vehicle}}</h1>
-    <p>Vehicle</p>
+<table>
+    <tr><th>Edit Post</th><th>Vehicle ID</th><th>Description</th><th>Employee</th><th>Vehicle Type
+    </th><th>Location</th><th>Make</th><th>Model</th><th>Year</th><th>Purchase Date</th><th>Disposal Date
+    </th><th>Mileage</th><th>Capacity</th><th>Tag Number</th><th>VIN</th><th>Cell Phone</th><th>Voice Mail
+    </th><th>Gas Card</th><th>Days Driven</th><th>Fuel Type
+    </th><th>Disposal Mileage</th><th>Comments</th><th>Received Messages
+    </th><th>Active</th><th>Reminder Type</th>
 
-<td>{{vehicle.vehicle_Number}},</td>
-<td>{{vehicle.description}},</td>
-<td>{{vehicle.employee}},</td>
-<td>{{vehicle.vehicle_Type}},</td>
-<td>{{vehicle.location}},</td>
-<td>{{vehicle.make}},</td>
-<td>{{vehicle.model}},</td>
-<td>{{vehicle.year}},</td>
-<td>{{vehicle.purchase_Date}},</td>
-<td>{{vehicle.disposal_Date}},</td>
-<td>{{vehicle.mileage}},</td>
-<td>{{vehicle.capacity}},</td>
-<td>{{vehicle.tag_Number}},</td>
-<td>{{vehicle.VIN}},</td>
-<td>{{vehicle.cell_Phone}},</td>
-<td>{{vehicle.voice_Mail}},</td>
-<td>{{vehicle.gas_Card}},</td>
-<td>{{vehicle.days_Driven}},</td>
-<td>{{vehicle.fuel_Type}},</td>
-<td>{{vehicle.disposal_Mileage}},</td>
-<td>{{vehicle.comments}},</td>
-<td>{{vehicle.recieves_Messages}},</td>
-<td>{{vehicle.active}},</td>
-<td>{{vehicle.reminder_Type}}</td>
+         
+        {% for vehicle in object_list %}
+        <tr><td><a href="{% url 'edit_vehicle' pk=vehicle.pk %}"><button type="button" class=
+            "btn btn-default"><span class="glyphicon glyphicon-pencil" 
+            aria-hidden="true"></span>Edit</button></a></td>   
+            <td>{{vehicle.vehicle_Number}}</td>
+            <td>{{vehicle.description}}</td>
+            <td>{{vehicle.employee}}</td>
+            <td>{{vehicle.vehicle_Type}}</td>
+            <td>{{vehicle.location}}</td>
+            <td>{{vehicle.make}},</td>
+            <td>{{vehicle.model}}</td>
+            <td>{{vehicle.year}}</td>
+            <td>{{vehicle.purchase_Date}}</td>
+            <td>{{vehicle.disposal_Date}}</td>
+            <td>{{vehicle.mileage}}</td>
+            <td>{{vehicle.capacity}}</td>
+            <td>{{vehicle.tag_Number}}</td>
+            <td>{{vehicle.VIN}}</td>
+            <td>{{vehicle.cell_Phone}}</td>
+            <td>{{vehicle.voice_Mail}}</td>
+            <td>{{vehicle.gas_Card}}</td>
+            <td>{{vehicle.days_Driven}}</td>
+            <td>{{vehicle.fuel_Type}}</td>
+            <td>{{vehicle.disposal_Mileage}}</td>
+            <td>{{vehicle.comments}}</td>
+            <td>{{vehicle.recieves_Messages}}</td>
+            <td>{{vehicle.active}}</td>
+            <td>{{vehicle.reminder_Type}}</td>
+              
+    
 
 {% endfor %}
 
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page=1&status={{ request.GET.status }}">&laquo; first</a>
+            <a href="?page={{ object_list.previous_page_number }}&status={{ request.GET.status }}">previous</a>
+        {% endif %}
 
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}&status={{ request.GET.status }}">next</a>
+            <a href="?page={{ object_list.paginator.num_pages }}&status={{ request.GET.status }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
     
 {% endblock %}
+
+
+
+</table>

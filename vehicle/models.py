@@ -1,5 +1,12 @@
 from django.db import models
 
+
+STATUS_CHOICES = [
+    ('ACTIVE', 'Active'),
+    ('NONACTIVE', 'Non-Active'),
+    ('ALL', 'ALL')
+]
+
 class Vehicle(models.Model):
     vehicle_Number = models.IntegerField()
     description = models.CharField(max_length=40)
@@ -29,4 +36,8 @@ class Vehicle(models.Model):
     
     def __str__(self):
         return str(self.vehicle_Number)
+
+
+
+
         

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Vehicle
+from .models import Vehicle, STATUS_CHOICES
 
 
 
@@ -33,6 +33,8 @@ reminder_choices = (
   ('both', 'Both'),
 )
 
+class VehicleStatusForm(forms.Form):
+    status = forms.CharField(max_length=100, widget=forms.Select(choices= STATUS_CHOICES))
 
 
 class VehicleForm(forms.ModelForm):
@@ -49,8 +51,8 @@ class VehicleForm(forms.ModelForm):
             'make': forms.TextInput(attrs={'class': 'form-control'}),
             'model': forms.TextInput(attrs={'class': 'form-control'}),
             'year': forms.NumberInput(attrs={'class': 'form-control'}),
-            'purchase_Date': forms.NumberInput(attrs={'class': 'form-control'}),
-            'disposal_Date': forms.NumberInput(attrs={'class': 'form-control'}),
+            'purchase_Date': forms.TextInput(attrs={'class': 'form-control'}),
+            'disposal_Date': forms.TextInput(attrs={'class': 'form-control'}),
             'mileage': forms.NumberInput(attrs={'class': 'form-control'}),
             'capacity': forms.NumberInput(attrs={'class': 'form-control'}),
             'tag_Number': forms.TextInput(attrs={'class': 'form-control'}),

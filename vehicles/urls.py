@@ -3,15 +3,15 @@ from vehicle import views
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from vehicle.views import VehicleListView
 
 urlpatterns = [
     path('vehicles/', include('vehicle.urls')),
     path('admin/', admin.site.urls),
-    #path('', views.contact),
-    path('', views.add_vehicle_view),
-    path('reservations', views.add_vehicle_view),
-    path('maintenance', views.add_vehicle_view),
-    path('vehicleAdmin', views.add_vehicle_view),
+    path('', VehicleListView.as_view()),
+    path('reservations', VehicleListView.as_view()),
+    path('maintenance', VehicleListView.as_view()),
+    path('vehicleAdmin', VehicleListView.as_view()),
 
 ]
 

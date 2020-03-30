@@ -1,13 +1,13 @@
 from django.urls import path
-from . import views
+
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import EditVehicleView, VehicleListView
+from .views import EditVehicleView, VehicleListView, AddVehicleView
 
 urlpatterns = [
-    path('', VehicleListView.as_view()),
-    path('add', views.add_vehicle_view),
-    path('<int:id>/', EditVehicleView.as_view()),
+    path('', VehicleListView.as_view(), name='vehicle_list'),
+    path('add', AddVehicleView.as_view(), name='add_vehicle'),
+    path('<int:pk>/', EditVehicleView.as_view(),name='edit_vehicle'),
 
 ]
 

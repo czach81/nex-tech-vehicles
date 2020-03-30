@@ -3,9 +3,39 @@
 
 
 {% block content %}
-<button type="edit">Edit</button>
+<style>
+    button {
+        display: inline-block;
+        color: red;
+        border: 4px double #cccccc;
+        padding: 10px;
+        margin-bottom: 5rem;
+        margin-top: 2rem;
+        text-align: center;
+    
+    }
+    button:hover {
+        background-color:black;
+
+    }
+</style>
 
 
-{{ form }}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+<form method="post">
+    {% csrf_token %} 
+    {{ form }} 
+   
+    <button type="submit">Submit</button>     
+</form>
+</div>
+</div>
+</div>
+
     
 {% endblock %}

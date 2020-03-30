@@ -44,99 +44,208 @@
                 <div class="form-group">
                     {{ form.vehicle_Number.label_tag }}
                     {{ form.vehicle_Number }}
+                    {% for error in form.vehicle_Number.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.description.label_tag }}
                     {{ form.description }}
+                    {% for error in form.description.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.employee.label_tag }}
                     {{ form.employee }}
+                    {% for error in form.employee.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.vehicle_Type.label_tag }}
                     {{ form.vehicle_Type }}
+                    {% for error in form.vehicle_Type.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.location.label_tag }}
                     {{ form.location }}
+                    {% for error in form.location.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.make.label_tag }}
                     {{ form.make }}
+                    {% for error in form.make.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.model.label_tag }}
                     {{ form.model }}
+                    {% for error in form.model.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.year.label_tag }}
                     {{ form.year }}
+                    {% for error in form.year.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.purchase_Date.label_tag }}
                     {{ form.purchase_Date }}
+                    {% for error in form.purchase_Date.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.disposal_Date.label_tag }}
                     {{ form.disposal_Date }}
+                    {% for error in form.disposal_Date.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.mileage.label_tag }}
                     {{ form.mileage }}
+                    {% for error in form.mileage.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.capacity.label_tag }}
                     {{ form.capacity }}
+                    {% for error in form.capacity.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.tag_Number.label_tag }}
                     {{ form.tag_Number }}
+                    {% for error in form.tag_Number.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.VIN.label_tag }}
                     {{ form.VIN }}
+                    {% for error in form.VIN.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.cell_Phone.label_tag }}
                     {{ form.cell_Phone }}
+                    {% for error in form.cell_Phone.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.voice_Mail.label_tag }}
                     {{ form.voice_Mail }}
+                    {% for error in form.voice_Mail.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.gas_Card.label_tag }}
                     {{ form.gas_Card }}
+                    {% for error in form.gas_Card.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Days Driven</label>
+                    
                 </div>
                 
                 <div class="form-group">
                     {{ form.fuel_Type.label_tag }}
                     {{ form.fuel_Type }}
+                    {% for error in form.fuel_Type.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.disposal_Mileage.label_tag }}
                     {{ form.disposal_Mileage }}
+                    {% for error in form.disposal_Mileage.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.comments.label_tag }}
                     {{ form.comments }}
+                    {% for error in form.comments.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Receives Messages</label>
+                    
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Active</label>
+                    
+                    
                 </div>
                 <div class="form-group">
                     {{ form.reminder_Type.label_tag }}
                     {{ form.reminder_Type }}
+                    {% for error in form.reminder_Type.errors %}
+                     <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
 
 
