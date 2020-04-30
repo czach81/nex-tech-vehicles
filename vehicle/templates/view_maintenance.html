@@ -1,0 +1,96 @@
+{% extends "base_site.html" %}
+
+
+
+{% block content %}
+<style>
+    
+    h1   {color: red;
+         margin-bottom: 2rem;
+         line-height: 2.5;
+         display: flex;
+         justify-content: center;}
+  
+</style>
+<style>
+    button {
+        display: inline-block;
+        color: red;
+        border: 4px double #cccccc;
+        padding: 10px;
+        margin-bottom: 5rem;
+        margin-top: 2rem;
+        text-align: center;
+    
+    }
+    button:hover {
+        background-color:black;
+
+    }
+</style>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
+    table {
+  border-spacing: 15px;
+    }
+    .btn { 
+        border: 2px solid black;
+        color: red;
+        border: 4px double #cccccc;
+    }
+
+</style>
+ 
+
+<table>
+    <tr><th>Vehicle ID</th><th>Mileage</th><th>Maintenance Date</th><th>Changed Oil</th><th>Rotated Tires
+    </th><th>Changed Transmission Fluid</th><th>Comments</th>
+
+         
+        {% for note in maintenance_list %}
+        <tr> 
+            
+            <td>{{note.vehicle.vehicle_Number}}</td>
+            <td>{{note.mileage}}</td>
+            <td>{{note.maintenance_Date}}</td>
+            <td>{{note.changed_Oil}}</td>
+            <td>{{note.rotated_Tires}}</td>
+            <td>{{note.changed_Transmission_Fluid}}</td>
+            <td>{{note.comments}}</td>
+            
+            
+    
+
+{% endfor %}
+    
+</table>
+
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if maintenance_list.has_previous %}
+            <a href="?page=1&status={{ request.GET.status }}">&laquo; first</a>
+            <a href="?page={{ maintenance_list.previous_page_number }}&status={{ request.GET.status }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ maintenance_list.number }} of {{ maintenance_list.paginator.num_pages }}.
+        </span>
+
+        {% if maintenance_list.has_next %}
+            <a href="?page={{ maintenance_list.next_page_number }}&status={{ request.GET.status }}">next</a>
+            <a href="?page={{ maintenance_list.paginator.num_pages }}&status={{ request.GET.status }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>             
+
+{% endblock %}
+

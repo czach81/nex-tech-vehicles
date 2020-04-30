@@ -5,11 +5,14 @@
 {% block content %}
 <style>
     
-    h1   {color: red;
+    h1   {
+         color: red;
          margin-bottom: 2rem;
          line-height: 2.5;
          display: flex;
-         justify-content: center;}
+         justify-content: center;
+         
+            }
   
 </style>
 <style>
@@ -45,19 +48,22 @@
         color: red;
         border: 4px double #cccccc;
     }
-
+    
+</style>
+<style>
+    label {
+        margin-top: 20px;
+        font-size: 20px;
+    }
 </style>
 
-
-
-
- 
-
-    
 <a href='{% url 'add_vehicle' %}'>Add Vehicle</a>
 
 <form method="get" >
-    {{ form }}
+    <div class="form-group">
+        {{ form.status.label_tag }}
+        {{ form.status }}
+    </div>
     <button type="submit">Search</button>
 </form>
 
@@ -106,8 +112,8 @@
 <div class="pagination">
     <span class="step-links">
         {% if object_list.has_previous %}
-            <a href="?page=1&status={{ request.GET.status }}">&laquo; first</a>
-            <a href="?page={{ object_list.previous_page_number }}&status={{ request.GET.status }}">previous</a>
+            <a href="?page=1{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">&laquo; first</a>
+            <a href="?page={{ object_list.previous_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">previous</a>
         {% endif %}
 
         <span class="current">
@@ -115,8 +121,8 @@
         </span>
 
         {% if object_list.has_next %}
-            <a href="?page={{ object_list.next_page_number }}&status={{ request.GET.status }}">next</a>
-            <a href="?page={{ object_list.paginator.num_pages }}&status={{ request.GET.status }}">last &raquo;</a>
+            <a href="?page={{ object_list.next_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">next</a>
+            <a href="?page={{ object_list.paginator.num_pages }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">last &raquo;</a>
         {% endif %}
     </span>
 </div>

@@ -3,7 +3,77 @@
 
 
 {% block content %}
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
+    table {
+  border-spacing: 15px;
+    }
+    .btn { 
+        border: 2px solid black;
+        color: red;
+        border: 4px double #cccccc;
+    }
 
+</style>
 
+ <!--<form method="get" >
+    {{ form }}
+    <button type="submit">Search</button>
+</form>  -->
+
+<table>
+    <tr><th>Mileage</th><th>Maintenance</th><th>Vehicle ID</th><th>Employee</th><th>Make</th><th>Model
+    </th><th>Year</th><th>Description
+    </th><th>Current Mileage</th><th>Mileage Year</th><th>Mileage Period</th><th>Last Oil Change</th>
+
+         
+        {% for vehicle in vehicle_list %}
+        <tr>
+            <td><a href="{% url 'add_mileage' vehicle_pk=vehicle.pk %}"><button type="button" class=
+                "btn btn-default"><span class="glyphicon glyphicon-pencil" 
+                aria-hidden="true"></span>Mileage</button></a></td>   
+        
+            <td><a href="{% url 'maintenance_detail' vehicle_pk=vehicle.pk %}"><button type="button" class=
+            "btn btn-default"><span class="glyphicon glyphicon-pencil" 
+            aria-hidden="true"></span>Maintenance</button></a></td>   
+            <td>{{vehicle.vehicle_Number}}</td>
+            <td>{{vehicle.employee}}</td>
+            <td>{{vehicle.make}},</td>
+            <td>{{vehicle.model}}</td>
+            <td>{{vehicle.year}}</td>
+            <td>{{vehicle.description}}</td>
+            <td>{{vehicle.mileage}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+             
+{% endfor %}
     
+<div class="pagination">
+    <span class="step-links">
+        {% if vehicle_list.has_previous %}
+            <a href="?page=1{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">&laquo; first</a>
+            <a href="?page={{ vehicle_list.previous_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ vehicle_list.number }} of {{ vehicle_list.paginator.num_pages }}.
+        </span>
+
+        {% if vehicle_list.has_next %}
+            <a href="?page={{ vehicle_list.next_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">next</a>
+            <a href="?page={{ vehicle_list.paginator.num_pages }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
 {% endblock %}
+
+</table>

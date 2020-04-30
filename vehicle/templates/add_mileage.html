@@ -1,0 +1,278 @@
+{% extends "base_site.html" %}
+{% load static %}
+
+{% block head %}
+
+
+
+
+
+{% endblock %}
+
+{% block content %}
+<style>
+    
+    h1   {color: red;
+         margin-bottom: 2rem;
+         line-height: 2.5;
+         display: flex;
+         justify-content: center;}
+
+    label {
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+  
+</style>
+<style>
+    button {
+        display: inline-block;
+        color: red;
+        border: 4px double #cccccc;
+        padding: 10px;
+        margin-bottom: 5rem;
+        margin-top: 2rem;
+        text-align: center;
+        margin: 13px;
+    
+    }
+    button:hover {
+        background-color:black;
+
+    }
+
+
+</style>
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            
+
+            <h1>Add Mileage</h1>
+            <form method = "post">
+                {% csrf_token %}
+                 
+            
+                
+                
+                <div class="form-group">
+                    {{ form.month_End_Mileage.label_tag }}
+                    {{ form.month_End_Mileage }}
+                    {% for error in form.month_End_Mileage.errors %}
+                    
+                    {% endfor %}
+                </div>
+                <div class="my-radio">
+                    {{ form.first_Aid_Kit_Status.label_tag }}
+                    {{ form.first_Aid_Kit_Status }}
+                    {% for error in form.first_Aid_Kit_Status.errors %}
+                   
+                    {% endfor %}
+                </div>
+                <div class="my-radio">
+                    {{ form.fire_Extinguisher_Status.label_tag }}
+                    {{ form.fire_Extinguisher_Status }}
+                    {% for error in form.fire_Extinguisher_Status.errors %}
+                   
+                    {% endfor %}
+                </div>
+            
+                <div class="my-radio">
+                    {{ form.drugalcohol_Testing_Kit_Status.label_tag }}
+                    {{ form.drugalcohol_Testing_Kit_Status }}
+                    {% for error in form.drugalcohol_Testing_Kit_Status.errors %}
+                    
+                    {% endfor %}
+                </div>
+                
+                <h3> Days Commuted To/From Primary Work Location </h3>
+
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">No Days Commuted</label>
+                    
+                </div>
+               
+               
+                <label>
+                    Year
+                    
+                        {{ form.year }} 
+                    
+                </label>
+                
+                <label>
+                    Month
+                    {{ form.month }}
+                </label>
+                 
+                
+
+                
+                    
+                <div class="calendar"> 
+                        
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                
+                
+                        <div><span style="font-size:40px">1</span>{{ form.day01 }}</div>
+                        <div><span style="font-size:40px">2</span>{{ form.day02 }}</div>
+                        <div><span style="font-size:40px">3</span>{{ form.day03 }}</div>
+                        <div><span style="font-size:40px">4</span>{{ form.day04 }}</div>
+                        <div><span style="font-size:40px">5</span>{{ form.day05 }}</div>
+                        <div><span style="font-size:40px">6</span>{{ form.day06 }}</div>
+                        <div><span style="font-size:40px">7</span>{{ form.day07 }}</div>
+                        <div><span style="font-size:40px">8</span>{{ form.day08 }}</div>
+                        <div><span style="font-size:40px">9</span>{{ form.day09 }}</div>
+                        <div><span style="font-size:40px">10</span>{{ form.day10 }}</div>
+                        <div><span style="font-size:40px">11</span>{{ form.day11 }}</div>
+                        <div><span style="font-size:40px">12</span>{{ form.day12 }}</div>
+                        <div><span style="font-size:40px">13</span>{{ form.day13 }}</div>
+                        <div><span style="font-size:40px">14</span>{{ form.day14 }}</div>
+                        <div><span style="font-size:40px">15</span>{{ form.day15 }}</div>
+                        <div><span style="font-size:40px">16</span>{{ form.day16 }}</div>
+                        <div><span style="font-size:40px">17</span>{{ form.day17 }}</div>
+                        <div><span style="font-size:40px">18</span>{{ form.day18 }}</div>
+                        <div><span style="font-size:40px">19</span>{{ form.day19 }}</div>
+                        <div><span style="font-size:40px">20</span>{{ form.day20 }}</div>
+                        <div><span style="font-size:40px">21</span>{{ form.day21 }}</div>
+                        <div><span style="font-size:40px">22</span>{{ form.day22 }}</div>
+                        <div><span style="font-size:40px">23</span>{{ form.day23 }}</div>
+                        <div><span style="font-size:40px">24</span>{{ form.day24 }}</div>
+                        <div><span style="font-size:40px">25</span>{{ form.day25 }}</div>
+                        <div><span style="font-size:40px">26</span>{{ form.day26 }}</div>
+                        <div><span style="font-size:40px">27</span>{{ form.day27 }}</div>
+                        <div><span style="font-size:40px">28</span>{{ form.day28 }}</div>
+                        <div><span style="font-size:40px">29</span>{{ form.day29 }}</div>
+                        <div><span style="font-size:40px">30</span>{{ form.day30 }}</div>
+                        <div><span style="font-size:40px">31</span>{{ form.day31 }}</div>
+                    </div>
+                
+                
+                <style>
+
+                    * {
+                        box-sizing: border-box;
+                    }
+
+                    
+                
+                   
+                    .calendar {
+                        display: flex;
+                        flex-flow: row wrap;
+                        
+                        padding: 12px;
+                        
+                    }
+
+                     h2 {
+                        
+                        
+                        padding-top: 2rem;
+                    }
+                    
+                    .calendar > div {
+                        flex: 0 0 calc(100%/7);
+                        border: 1px solid black;
+                        font-size:20px;
+                        text-align: center;
+                    }
+                    
+                    .hidden {
+                        display: none;
+                    }
+                    
+                </style>
+                
+                
+                <script>    
+                    var year = document.getElementById('id_year');
+                    var month = document.getElementById('id_month');
+                    var calendar = document.querySelector('.calendar');
+                    
+                    var today = new Date();
+                    if (!year.value){
+                        year.value = today.getFullYear();
+                    }
+
+                    
+                    if (!month.value){
+                        month.value = today.getMonth()||12;
+                    }
+
+                    year.addEventListener('change', function (e) {
+                        update(year.value, month.value);
+                    });
+                    
+                    month.addEventListener('change', function (e) {
+                        update(year.value, month.value);
+                    });
+                    
+                    // for when the page initially loads, e.g. validation error on submit
+                    update(year.value, month.value);
+                    
+                    function update(year, month) {
+                        // check that year and month are 'valid' or whatever
+                        
+                        // remove any prior-inserted placeholders
+                        for (var div of document.querySelectorAll('.cal-empty-day')) {
+                            div.remove();
+                        }
+                    
+                        // do some stuff to figure out what weekday the first day of the selected month is 
+                        var date = new Date();
+                        date.setYear(year);
+                        date.setMonth(parseInt(month) - 1);
+                        date.setDate(1);
+                        
+                        var weekday = date.getDay();
+                        
+                        for (var i = 0; i < weekday; i++) {
+                            // insert a blank div between the 'saturday' div and the 'day01' checkbox's div
+                            var div = document.createElement('div');
+                            div.classList.add('cal-empty-day');
+                            
+                            calendar.insertBefore(div, calendar.children[7]);
+                            
+                            // put a class on these divs and style them as 'invisible' so that they still
+                            // take up space but shift our days to the right 'columns'
+                        }
+                        
+                        date.setDate(31);
+                        
+                        for (var i = 0; i < 3; i++) {
+                            calendar.children[calendar.childElementCount - 1 - i].classList.remove('hidden');
+                        }
+                        
+                        var daysToHide = date.getDate();
+                        
+                        if (daysToHide < 4) {
+                            for (var i = 0; i < daysToHide; i++) {
+                                calendar.children[calendar.childElementCount - 1 - i].classList.add('hidden');
+                            }
+                        }
+                    }
+                </script>
+                
+                <button type="submit">Submit</button>
+                <button type="submit">Cancel</button>
+            
+            </form>
+
+        </div>
+    </div>
+</div>
+
+    
+{% endblock %}

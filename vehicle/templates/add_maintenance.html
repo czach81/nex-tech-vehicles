@@ -1,0 +1,101 @@
+{% extends "base_site.html" %}
+
+
+
+{% block content %}
+<style>
+    
+    h1   {color: red;
+         margin-bottom: 2rem;
+         line-height: 2.5;
+         display: flex;
+         justify-content: center;}
+  
+</style>
+<style>
+    button {
+        display: inline-block;
+        color: red;
+        border: 4px double #cccccc;
+        padding: 10px;
+        margin-bottom: 5rem;
+        margin-top: 2rem;
+        text-align: center;
+        margin: 13px;
+    
+    }
+    button:hover {
+        background-color:black;
+
+    }
+
+
+</style>
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            
+
+            <h1>Add Maintenance</h1>
+            <form method = "post">
+                {% csrf_token %}
+                 
+            
+                <div class="form-group">
+                    {{ form.mileage.label_tag }}
+                    {{ form.mileage }}
+                    {% for error in form.mileage.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.maintenance_Date.label_tag }}
+                    {{ form.maintenance_Date }}
+                    {% for error in form.maintenance_Date.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Changed Oil</label>
+                    
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Rotated Tires</label>
+                    
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Changed Transmission Fluid</label>
+                    
+                </div>
+                <div class="form-group">
+                    {{ form.comments.label_tag }}
+                    {{ form.comments }}
+                    {% for error in form.comments.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
+                </div>
+            
+                <button type="submit">Submit</button>
+                <button type="submit">Cancel</button>
+            
+            </form>
+
+        </div>
+    </div>
+</div>
+
+    
+{% endblock %}
