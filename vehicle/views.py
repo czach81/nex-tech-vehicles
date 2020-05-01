@@ -1,8 +1,8 @@
 from django.views.generic import FormView, UpdateView, CreateView
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import VehicleForm, VehicleStatusForm, MaintenanceForm, MileageForm
-from vehicle.models import Vehicle, Maintenance, Mileage
+from .forms import VehicleForm, VehicleStatusForm
+from vehicle.models import Vehicle
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import datetime
 
@@ -54,58 +54,6 @@ class AddVehicleView(CreateView):
 
 
     
-class MaintenanceDetailView(CreateView):
-    form_class = MaintenanceForm
-    template_name = "view_maintenance.html"
-    
-    def get_form_kwargs(self):
-        kwargs = {
-            'initial': self.get_initial(),
-            'prefix': self.get_prefix(),
-            
-        }
-
-        if self.request.method in ('POST', 'PUT'):
-            kwargs.update({
-                'data': self.request.POST,
-                'files': self.request.FILES,
-            })
-        elif self.request.method == 'GET':
-            kwargs.update({
-                'data': self.request.GET.copy()
-            })
-        return kwargs 
-
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        vehicle_pk = self.kwargs.get('vehicle_pk')
-        vehicle = Vehicle.objects.get(id=vehicle_pk)
-        maintenance_notes = vehicle.maintenance.all()
-         # start here to be able to read get request query parameters for django 
-        status = self.request.GET.get('status')
-        if status == 'ACTIVE':
-            queryset = queryset.filter(active = True)
-        elif status == 'NONACTIVE':
-            queryset = queryset.filter(active = False)
-
-        paginator = Paginator(maintenance_notes, 10)
-
-        page = self.request.GET.get('page')
-        try:
-          queryset = paginator.page(page)
-        except PageNotAnInteger:
-          queryset = paginator.page(1)
-        except EmptyPage:
-          queryset = paginator.page(paginator.num_pages)
-
-        context.update({
-        "maintenance_list": queryset,
-        "vehicle": vehicle,
-        "title": "List"
-        })
-
-        return context
 
 
 class VehicleListView(FormView):
@@ -165,88 +113,8 @@ class EditVehicleView(UpdateView):
         return reverse('vehicle_list') 
 
 
-class AddMaintenanceView(CreateView):
-    form_class = MaintenanceForm
-    template_name = "add_maintenance.html"
-    model = Maintenance
 
-    def get_success_url(self):
-        from django.urls import reverse
-        return reverse('maintenance') 
 
-class AddMileageView(CreateView):
-    form_class = MileageForm
-    template_name = "add_mileage.html"
-    model = Mileage
-    
-    def get_form_kwargs(self):
-        kwargs = {
-            'initial': self.get_initial(),
-            'prefix': self.get_prefix(),
-            
-        }
-
-        if self.request.method in ('POST', 'PUT'):
-            kwargs.update({
-                'data': self.request.POST,
-                'files': self.request.FILES,
-            })
-        elif self.request.method == 'GET':
-            kwargs.update({
-                'data': self.request.GET.copy()
-            })
-        return kwargs 
-
-    
-
-    def get_success_url(self):
-        from django.urls import reverse
-        return reverse('maintenance') 
-
-class VehicleMaintenanceListView(FormView):
-    form_class = MaintenanceForm #new form goes here for status 
-    template_name = "maintenance.html"
-    
-    
-    def get_form_kwargs(self):
-        kwargs = {
-            'initial': self.get_initial(),
-            'prefix': self.get_prefix(),
-            
-        }
-
-        if self.request.method in ('POST', 'PUT'):
-            kwargs.update({
-                'data': self.request.POST,
-                'files': self.request.FILES,
-            })
-        elif self.request.method == 'GET':
-            kwargs.update({
-                'data': self.request.GET.copy()
-            })
-        return kwargs 
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        queryset = Vehicle.objects.filter(active=True) # start here to be able to read get request query parameters for django 
-        status = self.request.GET.get('status')
-       
-        paginator = Paginator(queryset, 5)
-
-        page = self.request.GET.get('page')
-        try:
-          queryset = paginator.page(page)
-        except PageNotAnInteger:
-          queryset = paginator.page(1)
-        except EmptyPage:
-          queryset = paginator.page(paginator.num_pages)
-
-        context.update({
-        "vehicle_list": queryset,
-        "title": "List"
-        })
-
-        return context
 
         
 

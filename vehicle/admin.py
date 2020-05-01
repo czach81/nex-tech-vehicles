@@ -1,6 +1,4 @@
 from django.contrib import admin
-from .models import Vehicle, Maintenance, Mileage
+from .models import Vehicle
 
 admin.site.register(Vehicle)
-admin.site.register(Maintenance)
-admin.site.register(Mileage)
