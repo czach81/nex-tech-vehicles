@@ -1,0 +1,113 @@
+{% extends "base_site.html" %}
+
+
+
+{% block content %}
+<style>
+    
+    h1   {
+         color: red;
+         margin-bottom: 2rem;
+         line-height: 2.5;
+         display: flex;
+         justify-content: center;
+         
+            }
+  
+</style>
+<style>
+    button {
+        display: inline-block;
+        color: red;
+        border: 4px double #cccccc;
+        padding: 10px;
+        margin-bottom: 5rem;
+        margin-top: 2rem;
+        text-align: center;
+    
+    }
+    button:hover {
+        background-color:black;
+
+    }
+</style>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
+    table {
+  border-spacing: 15px;
+    }
+    .btn { 
+        border: 2px solid black;
+        color: red;
+        border: 4px double #cccccc;
+    }
+    
+</style>
+<style>
+    label {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+</style>
+
+
+
+<h1>Vehicles available for your itinerary</h1>
+
+<form id='vehicle_form' method= 'post'> 
+    {% csrf_token %}
+    {{ wizard.management_form }}
+{{ form.vehicle }}
+
+<table>
+    <tr><th>Vehicle Number</th><th>Make/Model/Year</th><th>Mileage</th>
+    <th>Capacity</th><th>Location</th><th></th><!--<th>Requires Approval</th>--></tr>
+
+
+        
+         
+        {% for vehicle in vehicle_list %}
+           
+            <tr><td>{{ vehicle.vehicle_Number }}</td>
+            <td>{{ vehicle.make }}, {{ vehicle.model }}, 
+                {{ vehicle.year }}</td>
+            <td>{{ vehicle.mileage }}</td>
+            <td>{{ vehicle.capacity }}</td>
+            <td>{{ vehicle.location }}</td>
+            <td>
+            
+                
+                <button onclick="set_VehicleID({{ vehicle.id }})">Reserve this Vehicle</button></td></tr>
+
+                
+                
+                
+    
+
+{% endfor %}
+
+
+    
+
+
+
+
+</table>
+</form>
+
+<script>
+    function set_VehicleID(id) {
+        $("#id_1-vehicle").val(id);
+    }
+    </script>
+
+
+
+{% endblock %}

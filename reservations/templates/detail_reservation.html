@@ -1,0 +1,157 @@
+{% extends "base_site.html" %}
+
+
+
+{% block content %}
+<style>
+    
+    h1   {
+         color: red;
+         margin-bottom: 2rem;
+         line-height: 2.5;
+         display: flex;
+         justify-content: center;
+         
+            }
+  
+</style>
+<style>
+    button {
+        display: inline-block;
+        color: red;
+        border: 4px double #cccccc;
+        padding: 10px;
+        margin-bottom: 5rem;
+        margin-top: 2rem;
+        text-align: center;
+    
+    }
+    button:hover {
+        background-color:black;
+
+    }
+</style>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
+    table {
+  border-spacing: 15px;
+    }
+    .btn { 
+        border: 2px solid black;
+        color: red;
+        border: 4px double #cccccc;
+    }
+    
+</style>
+<style>
+    label {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+</style>
+
+
+
+<h1>Making a New Reservation</h1>
+            <p class="description">Now that you have selected a vehicle, you will need to specify who is driving,
+                add any passengers, provide some detail of the purpose for this reservation as well as any 
+            additional comments, and optionally set up a pattern of recurrence for this reservation. Note that the reservation
+            will be listed as leaving from the location of the vehicle you selected. </p>
+
+<h3>Itinerary</h3>
+<table>
+    
+    <tr><th>Leaving From</th><th>Heading To</th><th>Leaving By</th><th>Returning By</th></tr>
+
+</table>
+        
+    <h3>Vehicle Details</h3>   
+<table>    
+    <tr><th>Vehicle Number</th><th>Make/Model/Year</th>
+        <th>Capacity</th><!--<th>Requires Approval</th>--></tr>
+
+</table>
+       
+<table> 
+<tr><th>Driver</th></tr>
+</table> 
+    
+    <h3>Passengers</h3>
+<table>
+    <tr><th>Add Passengers</th></tr>
+</table>   
+    
+<table>
+    <tr><th>Purpose</th></tr>
+    
+    <tr><th>Additional Comments</th></tr>
+</table>             
+            <td>{{ reservation.leaving_From }}</td>
+            <td>{{ reservation.heading_To }}</td>
+            <td>{{ reservation.leaving_By }}</td>
+            <td>{{ reservation.returning_By }}</td>
+            <td>{{ vehicle.vehicle_Number }}</td>
+            <td>{{ vehicle.make }}, {{ vehicle.model }}, {{ vehicle.year }}</td>
+            
+            <td>{{ vehicle.capcity }}</td>
+           <!-- <td>{{form.requires_Approval}}</td>-->
+            
+            <form method = "post">
+                {% csrf_token %}
+                {{ wizard.management_form }}
+                
+
+                <!-- {{form.vehicle}} -->
+                 
+            
+                <div class="form-group">
+                    {{ form.driver.label_tag }}
+                    {{ form.driver}}
+                    {% for error in form.driver.errors %}
+                    
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.passenger.label_tag }}
+                    {{ form.passenger }}
+                    {% for error in form.passenger.errors %}
+                    
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.purpose.label_tag }}
+                    {{ form.purpose }}
+                    {% for error in form.purpose.errors %}
+                    
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.additional_Comments.label_tag }}
+                    {{ form.additional_Comments }}
+                    {% for error in form.additional_Comments.errors %}
+                    
+                    {% endfor %}
+                </div>
+
+            
+                <button type="submit">Submit new reservation </button>
+                
+            </form>             
+    
+
+
+
+
+    
+{% endblock %}
+
+
+

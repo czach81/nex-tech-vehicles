@@ -43,6 +43,8 @@
             <h1>Add Maintenance</h1>
             <form method = "post">
                 {% csrf_token %}
+
+                {{form.vehicle}}
                  
             
                 <div class="form-group">
@@ -63,20 +65,34 @@
                     </div>
                     {% endfor %}
                 </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Changed Oil</label>
-                    
+
+                <div class="form-group">
+                    {{ form.changed_Oil.label_tag }}
+                    {{ form.changed_Oil }}
+                    {% for error in form.changed_Oil.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Rotated Tires</label>
-                    
+                <div class="form-group">
+                    {{ form.rotated_Tires.label_tag }}
+                    {{ form.rotated_Tires }}
+                    {% for error in form.rotated_Tires.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Changed Transmission Fluid</label>
-                    
+
+                <div class="form-group">
+                    {{ form.changed_Transmission_Fluid.label_tag }}
+                    {{ form.changed_Transmission_Fluid }}
+                    {% for error in form.changed_Transmission_Fluid.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error }}</strong>
+                    </div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     {{ form.comments.label_tag }}

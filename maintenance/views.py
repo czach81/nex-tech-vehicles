@@ -6,6 +6,7 @@ from maintenance.models import  Maintenance, Mileage
 from vehicle.models import Vehicle
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import datetime
+from django.db.models import Max, OuterRef, Subquery
 
 
 
@@ -74,7 +75,17 @@ class AddMaintenanceView(CreateView):
 
     def get_success_url(self):
         from django.urls import reverse
-        return reverse('maintenance_list') 
+        return reverse('maintenance_list', kwargs={'pk':self.kwargs.get('vehicle_pk')}) 
+
+    def get_initial(self):
+        return {'vehicle': self.kwargs.get('vehicle_pk')}
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
 class AddMileageView(CreateView):
     form_class = MileageForm
@@ -102,7 +113,6 @@ class VehicleMaintenanceListView(FormView):
     form_class = MaintenanceForm #new form goes here for status 
     template_name = "maintenance.html"
     
-    
     def get_form_kwargs(self):
         kwargs = {
             'initial': self.get_initial(),
@@ -123,9 +133,50 @@ class VehicleMaintenanceListView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        queryset = Vehicle.objects.filter(active=True) # start here to be able to read get request query parameters for django 
-        status = self.request.GET.get('status')
-       
+        queryset = Vehicle.objects.filter(
+                active=True
+            ).annotate(
+                latest_mileage=Subquery(
+                    Mileage.objects.filter(
+                        vehicle_id=OuterRef('id')
+                    ).order_by(
+                        '-month', '-year'
+                    ).values(
+                        'month_End_Mileage',
+                    )[:1]
+                ),
+                latest_changed_Oil=Subquery(
+                    Maintenance.objects.filter(
+                        changed_Oil=True,
+                        vehicle_id=OuterRef('id')
+                    ).order_by(
+                        '-maintenance_Date'
+                    ).values(
+                        'maintenance_Date'
+                    )[:1]
+                ),
+                latest_month=Subquery(
+                    Mileage.objects.filter(
+                
+                        vehicle_id=OuterRef('id')
+                    ).order_by(
+                        '-month', '-year'
+                    ).values(
+                        'month'
+                    )[:1]
+                ),
+                latest_year=Subquery(
+                    Mileage.objects.filter(
+                        vehicle_id=OuterRef('id')
+                    ).order_by(
+                        '-month', '-year'
+                    ).values(
+                        'year', 
+                    )[:1]
+                )
+            ).order_by('vehicle_Number')
+            
+
         paginator = Paginator(queryset, 5)
 
         page = self.request.GET.get('page')

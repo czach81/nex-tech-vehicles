@@ -1,0 +1,95 @@
+{% extends "base_site.html" %}
+
+
+
+{% block content %}
+<style>
+    
+    h1   {color: red;
+         margin-bottom: 2rem;
+         line-height: 2.5;
+         display: flex;
+         justify-content: center;}
+  
+</style>
+<style>
+    button {
+        display: inline-block;
+        color: red;
+        border: 4px double #cccccc;
+        padding: 10px;
+        margin-bottom: 5rem;
+        margin-top: 2rem;
+        text-align: center;
+        margin: 13px;
+    
+    }
+    button:hover {
+        background-color:black;
+
+    }
+
+
+</style>
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            
+
+            <h1>Making a New Reservation</h1>
+            <p class="description">Please fill out the fields below. When finished, click 'Find available vehicles' to continue. </p>
+            <p class="description">    (Note: Reservations must be at least one hour long.)</p>
+            
+            <form method = "post">
+                {% csrf_token %}
+                {{ wizard.management_form }}
+                
+
+
+                <!-- {{form.vehicle}} -->
+                 
+            
+                <div class="form-group">
+                    {{ form.leaving_From.label_tag }}
+                    {{ form.leaving_From }}
+                    
+                </div>
+                <div class="form-group">
+                    {{ form.heading_To.label_tag }}
+                    {{ form.heading_To }}
+                    
+                    
+                   
+                </div>
+
+                <div class="form-group">
+                    {{ form.leaving_By.label_tag }}
+                    {{ form.leaving_By }}
+                    
+                    
+                    
+                </div>
+                <div class="form-group">
+                    {{ form.returning_By.label_tag }}
+                    {{ form.returning_By }}
+                    
+                    
+                    
+                </div>
+
+            
+                <button type="submit">Find Available Vehicles </button>
+                
+            
+            </form>
+
+        </div>
+    </div>
+</div>
+
+    
+{% endblock %}

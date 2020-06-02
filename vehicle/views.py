@@ -85,6 +85,8 @@ class VehicleListView(FormView):
         elif status == 'NONACTIVE':
             queryset = queryset.filter(active = False)
 
+        queryset=queryset.order_by('vehicle_Number')
+
         paginator = Paginator(queryset, 5)
 
         page = self.request.GET.get('page')

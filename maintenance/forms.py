@@ -33,8 +33,9 @@ class MaintenanceForm(forms.ModelForm):
         model = Maintenance
         exclude = ()
         widgets = {
+            'vehicle': forms.HiddenInput(),
             'mileage': forms.NumberInput(attrs={'class': 'form-control'}),
-            'maintenance_Date': forms.NumberInput(attrs={'class': 'form-control'}),
+            'maintenance_Date': forms.DateInput(attrs={'class': 'form-control'}),
             'changed_Oil': forms.CheckboxInput(attrs={'class': 'form-control'}),
             'rotated_Tires': forms.CheckboxInput(attrs={'class': 'form-control'}),
             'changed_Transmission_Fluid': forms.CheckboxInput(attrs={'class': 'form-control'}),

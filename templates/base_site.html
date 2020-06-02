@@ -24,13 +24,13 @@
                     <a href="/" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/reservations" class="nav-link">Reservations</a>
+                    <a href="{% url 'reservations' %}" class="nav-link">Reservations</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/maintenance" class="nav-link">Maintenance</a>
+                    <a href="{% url 'maintenance' %}" class="nav-link">Maintenance</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/vehicles/" class="nav-link">Vehicle Admin</a>
+                    <a href="{% url 'vehicle_list' %}" class="nav-link">Vehicle Admin</a>
                 </li>
             </ul>
         </div>

@@ -6,7 +6,7 @@ from django.db import models
 class Maintenance(models.Model):
     vehicle = models.ForeignKey('vehicle.Vehicle', on_delete=models.CASCADE, related_name='maintenance')
     mileage = models.IntegerField()
-    maintenance_Date = models.IntegerField(max_length=40)
+    maintenance_Date = models.DateField(max_length=40)
     changed_Oil = models.BooleanField()
     rotated_Tires = models.BooleanField()
     changed_Transmission_Fluid = models.BooleanField()

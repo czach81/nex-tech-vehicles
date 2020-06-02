@@ -31,7 +31,7 @@
 <table>
     <tr><th>Mileage</th><th>Maintenance</th><th>Vehicle ID</th><th>Employee</th><th>Make</th><th>Model
     </th><th>Year</th><th>Description
-    </th><th>Current Mileage</th><th>Mileage Year</th><th>Mileage Period</th><th>Last Oil Change</th>
+    </th><th>Current Mileage</th><th>Mileage Month</th><th>Mileage Year</th><th>Last Oil Change</th>
 
          
         {% for vehicle in vehicle_list %}
@@ -49,10 +49,10 @@
             <td>{{vehicle.model}}</td>
             <td>{{vehicle.year}}</td>
             <td>{{vehicle.description}}</td>
-            <td>{{vehicle.mileage}}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{vehicle.latest_mileage|default_if_none:vehicle.mileage}}</td>
+            <td>{{vehicle.latest_month|default_if_none:''}}</td>
+            <td>{{vehicle.latest_year|default_if_none:''}}</td>
+            <td>{{vehicle.latest_changed_Oil|default_if_none:''}}</td>
              
 {% endfor %}
     
